@@ -1,12 +1,12 @@
 import {
     ChatBubbleOutlineOutlined,
     FavoriteBorderOutlined,
-    FavouriteOutlined,
     ShareOutlined,
 } from "@mui/icons-material";
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
-import Friend from "components/Friend";
+import Friend from "components/Friends";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import {useDispatch, useSelector } from "react-redux";
@@ -25,7 +25,7 @@ export default function PostWidget({
   }) {
     const [isComments,setIsComments] = useState(false);
     const dispatch = useDispatch();
-    const token = useSelector((state) = state.token);
+    const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
@@ -33,6 +33,7 @@ export default function PostWidget({
     const { palette } = useTheme();
     const main = palette.neutral.main;
     const medium = palette.neutral.medium;
+    const primary = palette.primary.main;
 
     const patchLike = async() => {
         const response = await fetch(`http://localhost:3001/posts/${postId}/like`,{
@@ -68,7 +69,7 @@ export default function PostWidget({
 
                     <FlexBetween gap="0.3rem">
                         <IconButton onClick={patchLike}>
-                            {isLiked ?(<FavouriteOutlined sx={{ color: primary }} />)
+                            {isLiked ?(<FavoriteOutlinedIcon sx={{ color: primary }} />)
                             :(<FavoriteBorderOutlined />)}
                         </IconButton>
                         <Typography color={medium}>{likeCount}</Typography>

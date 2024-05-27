@@ -140,7 +140,7 @@ export default function Form(){
                                 sx={{gridColumn: "span 2"}}
                             />
                             <TextField
-                                label="Lasr Name"
+                                label="Last Name"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 value={values.lastName}

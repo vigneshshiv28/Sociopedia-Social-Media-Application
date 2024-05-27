@@ -1,6 +1,8 @@
 import { Typography } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
+import {useTheme} from "@mui/material";
+
 
 export default function AdvertWidget(){
     const { palette } = useTheme();

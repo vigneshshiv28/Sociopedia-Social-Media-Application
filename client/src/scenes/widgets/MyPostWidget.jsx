@@ -1,12 +1,15 @@
 import {
-    EditOutLined,
-    DeleteOutLined,
+   
+    
     AttachFileOutlined,
     GifBoxOutlined,
     ImageOutlined,
     MicOutlined,
-    MoreHorizontalOutlined,
+    
 } from "@mui/icons-material";
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import {
     Box,
     Divider,
@@ -23,10 +26,11 @@ import Dropzone from "react-dropzone";
 import UserImage from "components/UserImage";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import WidgetWrapper from "components/WidgetWrapper";
 import { setPost } from "state";
 import { useFetcher } from "react-router-dom";
 
-export default function MyPostWidget() {
+export default function MyPostWidget({picturePath}) {
     const dispatch = useDispatch();
     const [isImage, setIsImage] = useState(false);
     const[image, setImage] = useState(null);
@@ -60,7 +64,7 @@ export default function MyPostWidget() {
         return(
             <WidgetWrapper>
                 <FlexBetween gap="1.5rem">
-                    <UserImage img={imagePath}/>
+                    <UserImage img={picturePath}/>
                     <InputBase
                         placeholder="What's on your mind?"
                         onChange={(e) => setPost(e.target.value)}
@@ -84,7 +88,7 @@ export default function MyPostWidget() {
                             acceptedFiles=".jpg,.png,.jpeg"
                             multiple={false}
                             onDrop={(acceptedFiles)=>{
-                                setFieldvalue("picture",acceptedFiles[0])
+                                setImage("picture",acceptedFiles[0])
                             }}
                         >
                             {({getRootProps,getInputProps})=>(
@@ -102,7 +106,7 @@ export default function MyPostWidget() {
                                         ):(
                                         <FlexBetween>
                                             <Typography>{image.name}</Typography>
-                                            <EditOutLined/>
+                                            <EditOutlinedIcon/>
                                         </FlexBetween>
                                         )}
                                 </Box>
@@ -111,7 +115,7 @@ export default function MyPostWidget() {
                                         onClick={() => setImage(null)}
                                         sx={{ width: "15%"}}
                                     >
-                                        <DeleteOutLined/>
+                                        <DeleteOutlinedIcon/>
                                     </IconButton>
                                 )}
                     
@@ -152,7 +156,7 @@ export default function MyPostWidget() {
                                 
                         </>):(
                             <FlexBetween gap="0.25rem">
-                                <MoreHorizontalOutlined sx={{ color: mediumMain}}/>
+                                <MoreHorizOutlinedIcon sx={{ color: mediumMain}}/>
                             </FlexBetween>
                         )}
                         <Button 
